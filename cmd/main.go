@@ -4,6 +4,7 @@ import (
 	"log"
 
 	"github.com/gin-gonic/gin"
+	"github.com/jimtrung/movie-reservation-system/api/routes"
 	"github.com/jimtrung/movie-reservation-system/config"
 )
 
@@ -18,6 +19,9 @@ func main() {
 
     // --> Server <--
     r := gin.New()
+
+    // Set up routes
+    routes.SetupRoutes(r)
 
     r.SetTrustedProxies([]string{"127.0.0.1"})
 

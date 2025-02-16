@@ -2,12 +2,12 @@ package models
 
 import "time"
 
-type Role int
+type Role string
 
 const (
-    Admin Role = 10
-    Moderator  = 1
-    Client     = 0
+    Admin Role = "admin"
+    Moderator  = "moderator"
+    Client     = "user"
 )
 
 type User struct {
@@ -21,6 +21,7 @@ type User struct {
 
 type SignUpRequest struct {
     Username string `json:"username"`
+    Email    string `json:"email"`
     Password string `json:"password"`
 }
 
