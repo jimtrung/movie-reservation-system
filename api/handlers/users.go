@@ -77,8 +77,8 @@ func Login(c *gin.Context) {
 }
 
 func Validate(c *gin.Context) {
-    userInfo, err := c.Cookie("user")
-    if err != nil {
+    userInfo, ok := c.Get("user")
+    if !ok {
         c.JSON(http.StatusBadRequest, gin.H{
             "error": "Failed to get user from cookie",
         })
