@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/jimtrung/movie-reservation-system/api/routes"
 	"github.com/jimtrung/movie-reservation-system/config"
+	"github.com/jimtrung/movie-reservation-system/internal/middleware"
 )
 
 func main() {
@@ -16,6 +17,9 @@ func main() {
     defer config.CloseDatabaseConnection()
 
     config.SetupPort()
+
+    // --> Setup OAuth <--
+    middleware.NewAuth()
 
     // --> Server <--
     r := gin.New()

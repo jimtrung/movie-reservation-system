@@ -75,3 +75,15 @@ func GetUserByUsername(username string) (models.UserResponse, error) {
 
     return userResponse, nil
 }
+
+func GetUsernameFromEmail(email string) string {
+    username := ""
+    for _, char := range email {
+        if char == '@' {
+            break
+        }
+        username += string(char)
+    }
+
+    return username
+}

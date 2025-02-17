@@ -8,7 +8,12 @@ import (
 
 func SetupRoutes(r *gin.Engine) {
     // --> User <-- //
+    // -> JWT Auth <-
     r.POST("/user/signup", handlers.Signup)
     r.POST("/user/login", handlers.Login)
     r.GET("/validate", middleware.RequireAuth, handlers.Validate)
+
+    // -> OAuth <-
+    r.GET("/auth/:provider", middleware.BeginAuthProviderCallback)
+    r.GET("/auth/:provider/callback", middleware.GetAuthCallBackFunction)
 }
