@@ -16,4 +16,9 @@ func SetupRoutes(r *gin.Engine) {
     // -> OAuth <-
     r.GET("/auth/:provider", middleware.BeginAuthProviderCallback)
     r.GET("/auth/:provider/callback", middleware.GetAuthCallBackFunction)
+
+    // --> Movie <-- //
+    r.POST("/movie/add", handlers.AddMovie)
+    r.PUT("/movie/update/:movie_id", handlers.UpdateMovie)
+    r.DELETE("/movie/delete/:movie_id", handlers.DeleteMovie)
 }
