@@ -25,3 +25,4 @@ BEFORE UPDATE ON movies
 FOR EACH ROW EXECUTE FUNCTION update_updated_at_movie();
 
 SELECT * FROM movies;
+SELECT * FROM users;

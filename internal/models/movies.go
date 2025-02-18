@@ -32,3 +32,17 @@ type AddMovieRequest struct {
     Image       string     `json:"image"`
     Genre       Genre      `json:"genre"`
 }
+
+type Field string
+
+const (
+    Title Field = "title"
+    Description = "description"
+    Image       = "image"
+    GenreField  = "genre"
+)
+
+type UpdateRequest struct {
+    Field string `json:"field"`
+    Value string `json:"value"`
+}

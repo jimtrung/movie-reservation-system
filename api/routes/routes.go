@@ -18,7 +18,10 @@ func SetupRoutes(r *gin.Engine) {
     r.GET("/auth/:provider/callback", middleware.GetAuthCallBackFunction)
 
     // --> Movie <-- //
-    r.POST("/movie/add", handlers.AddMovie)
-    r.PUT("/movie/update/:movie_id", handlers.UpdateMovie)
-    r.DELETE("/movie/delete/:movie_id", handlers.DeleteMovie)
+    r.POST("/movie/add", middleware.IsAdmin, handlers.AddMovie)
+    r.PUT("/movie/update/:movie_id", middleware.IsAdmin, handlers.UpdateMovie)
+    r.DELETE("/movie/delete/:movie_id", middleware.IsAdmin, handlers.DeleteMovie)
+
+    // --> Static File <-- //
+    r.Static("/static", "./static")
 }

@@ -27,13 +27,40 @@ func AddMovie(c *gin.Context) {
     }
 
     c.JSON(http.StatusOK, gin.H{
-        "message": "User added to database successfully",
+        "message": "Movie added to database successfully",
     })
 }
 
 func UpdateMovie(c *gin.Context) {
+    movieIDString := c.Param("movie_id")
 
+    movieID, err := strconv.Atoi(movieIDString)
+    if err != nil {
+        c.JSON(http.StatusBadRequest, gin.H{
+            "error": "Failed to convert string into integer",
+        })
+        return
+    }
 
+    var req models.UpdateRequest
+
+    if err := c.Bind(&req); err != nil {
+        c.JSON(http.StatusBadRequest, gin.H{
+            "error": "Wrong JSON format",
+        })
+        return
+    }
+
+    if err := services.UpdateMovieField(movieID, req); err != nil {
+        c.JSON(http.StatusInternalServerError, gin.H{
+            "error": err.Error(),
+        })
+        return
+    }
+
+    c.JSON(http.StatusOK, gin.H{
+        "message": "Movie updated to database successfully",
+    })
 }
 
 func DeleteMovie(c *gin.Context) {

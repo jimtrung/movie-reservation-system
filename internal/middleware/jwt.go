@@ -8,6 +8,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt/v5"
+	"github.com/jimtrung/movie-reservation-system/internal/models"
 	"github.com/jimtrung/movie-reservation-system/internal/services"
 )
 
@@ -71,5 +72,27 @@ func RequireAuth(c *gin.Context) {
     }
 
     c.Set("user", user)
+    c.Next()
+}
+
+func IsAdmin(c *gin.Context) {
+    userAny, exist := c.Get("user")
+    if !exist {
+        c.AbortWithStatus(http.StatusUnauthorized)
+        return
+    }
+
+    user, ok := userAny.(models.UserResponse)
+
+    if !ok {
+        c.AbortWithStatus(http.StatusUnauthorized)
+        return
+    }
+    fmt.Println(user)
+
+    if user.Role != models.Admin {
+        c.AbortWithStatus(http.StatusUnauthorized)
+    }
+
     c.Next()
 }

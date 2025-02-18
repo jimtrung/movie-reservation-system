@@ -1,0 +1,345 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #0f2027, #2c5364);
+    overflow: hidden;
+    font-size: 16px;
+    animation: bgMove 10s ease-in-out infinite;
+}
+
+/* Infinite Background Animation */
+@keyframes bgMove {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+/* Form Container */
+.form-container {
+    width: 450px;
+    padding: 50px;
+    background: rgba(29, 31, 35, 0.85);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    position: relative;
+    opacity: 0;
+    animation: slideUp 1s forwards, fadeIn 1s ease-out 0.5s;
+}
+
+/* Slide In + Fade In for the Form */
+@keyframes slideUp {
+    0% {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.form-container h2 {
+    text-align: center;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: #4caf50;
+    position: relative;
+    animation: textGlow 3s ease-in-out infinite alternate;
+}
+
+/* Glowing Effect for Header */
+@keyframes textGlow {
+    0% {
+        text-shadow: 0 0 10px #4caf50, 0 0 20px #4caf50, 0 0 30px #4caf50;
+    }
+    100% {
+        text-shadow: 0 0 20px #00ff00, 0 0 40px #00ff00, 0 0 60px #00ff00;
+    }
+}
+
+/* Form Inputs */
+.form-group {
+    margin-bottom: 20px;
+    position: relative;
+    opacity: 0;
+    animation: slideInForm 1s ease-in-out 1.2s forwards;
+}
+
+@keyframes slideInForm {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: #bbb;
+    font-weight: 500;
+}
+
+input {
+    width: 100%;
+    padding: 16px;
+    font-size: 18px;
+    border: 1px solid #444;
+    background: #333;
+    color: white;
+    border-radius: 12px;
+    box-shadow: 0px 5px 20px rgba(0, 255, 0, 0.2);
+    position: relative;
+    transition: all 0.3s ease;
+    z-index: 1;
+    background-image: linear-gradient(135deg, #444, #222);
+    animation: shakeInput 1.5s ease-in-out infinite alternate;
+}
+
+/* Input Shake Animation */
+@keyframes shakeInput {
+    0% {
+        transform: translateX(-10px);
+    }
+    50% {
+        transform: translateX(10px);
+    }
+    100% {
+        transform: translateX(-10px);
+    }
+}
+
+input:focus {
+    border-color: #4caf50;
+    background: #282828;
+    outline: none;
+    box-shadow: 0px 0px 10px rgba(76, 175, 80, 0.7);
+    animation: inputFocus 0.3s ease-out;
+}
+
+@keyframes inputFocus {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Button Styling */
+button {
+    width: 100%;
+    padding: 18px;
+    font-size: 18px;
+    font-weight: 700;
+    background: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+    animation: buttonPulse 2s infinite alternate;
+}
+
+/* Button Pulse Animation */
+@keyframes buttonPulse {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+button:hover {
+    background: #45a049;
+    transform: translateY(-5px);
+}
+
+button:active {
+    transform: scale(0.98);
+    box-shadow: 0 5px 25px rgba(76, 175, 80, 0.6);
+}
+
+/* Response Message */
+#response {
+    margin-top: 25px;
+    text-align: center;
+    font-size: 16px;
+    color: #4caf50;
+    opacity: 0;
+    animation: fadeInResponse 1s ease-in-out 1.5s forwards;
+}
+
+/* Response Fade In */
+@keyframes fadeInResponse {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Google Login Button */
+.google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: #db4437;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-top: 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.google-btn:hover {
+    background-color: #c1351d;
+    transform: translateY(-3px);
+}
+
+.google-logo {
+    width: 24px;
+    margin-right: 10px;
+}
+
+/* Login Link */
+.login-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #bbb;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.login-link:hover {
+    color: #4caf50;
+}
+
+/* Forgot Password Link */
+.forgot-password-link {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #bbb;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.forgot-password-link:hover {
+    color: #4caf50;
+}
+
+/* Profile Container */
+.profile-container {
+    width: 350px;
+    padding: 30px;
+    background: #1a1a1a;
+    border-radius: 12px;
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.05);
+    transition: transform 0.3s ease;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.profile-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    color: white;
+}
+
+/* Profile Info */
+.profile-info {
+    color: #bbb;
+    margin-bottom: 20px;
+}
+
+.profile-info span {
+    color: #fff;
+}
+
+/* Button Styling */
+button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    background: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background: #45a049;
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* Logout Link */
+.logout-link {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+    color: #bbb;
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.logout-link:hover {
+    color: #4caf50;
+}
+
