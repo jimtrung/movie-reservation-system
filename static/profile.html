@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
     <script src="https://unpkg.com/htmx.org@1.9.6"></script>
-    <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
-    <link rel="stylesheet" href="./static/styles/style.css">
 </head>
 <body>
 
@@ -19,7 +17,7 @@
             <!-- You can add other profile information here -->
         </div>
 
-        <button hx-get="http://127.0.0.1:8080/user/profile"
+        <button hx-get="/user/profile"
                 hx-target=".profile-info"
                 hx-swap="outerHTML">
             Load Profile
