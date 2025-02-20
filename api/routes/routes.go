@@ -23,5 +23,19 @@ func SetupRoutes(r *gin.Engine) {
     r.DELETE("/movie/delete/:movie_id", middleware.IsAdmin, handlers.DeleteMovie)
 
     // --> Static File <-- //
-    r.Static("/static", "./static")
+    r.GET("/signup", func(ctx *gin.Context) {
+        ctx.File("./static/signup.html")
+    })
+
+    r.GET("/login", func(ctx *gin.Context) {
+        ctx.File("./static/login.html")
+    })
+
+    r.GET("/forgotpassword", func(ctx *gin.Context) {
+        ctx.File("./static/forgotpassword.html")
+    })
+
+    r.GET("/profile", func(ctx *gin.Context) {
+        ctx.File("./static/profile.html")
+    })
 }
