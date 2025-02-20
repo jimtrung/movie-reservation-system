@@ -2,7 +2,6 @@ package middleware
 
 import (
 	"context"
-	"log"
 	"net/http"
 	"os"
 
@@ -65,7 +64,6 @@ func GetAuthCallBackFunction(c *gin.Context) {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
 		return
 	}
-    log.Println(user)
 
 	var userInfo = models.SignUpRequest{
 		Username: user.Email,

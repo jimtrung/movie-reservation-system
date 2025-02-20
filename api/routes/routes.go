@@ -9,18 +9,21 @@ import (
 func SetupRoutes(r *gin.Engine) {
     // --> User <-- //
     // -> JWT Auth <-
-    r.POST("/user/signup", handlers.Signup)
-    r.POST("/user/login", handlers.Login)
-    r.GET("/validate", middleware.RequireAuth, handlers.Validate)
+    user := r.Group("/user")
+    user.POST("/signup", handlers.Signup)
+    user.POST("/login", handlers.Login)
+    user.GET("/validate", middleware.RequireAuth, handlers.Validate)
 
     // -> OAuth <-
-    r.GET("/auth/:provider", middleware.BeginAuthProviderCallback)
-    r.GET("/auth/:provider/callback", middleware.GetAuthCallBackFunction)
+    auth := r.Group("/auth")
+    auth.GET("/:provider", middleware.BeginAuthProviderCallback)
+    auth.GET("/:provider/callback", middleware.GetAuthCallBackFunction)
 
     // --> Movie <-- //
-    r.POST("/movie/add", middleware.RequireAuth, middleware.IsAdmin, handlers.AddMovie)
-    r.PUT("/movie/update/:movie_id", middleware.RequireAuth, middleware.IsAdmin, handlers.UpdateMovie)
-    r.DELETE("/movie/delete/:movie_id", middleware.RequireAuth, middleware.IsAdmin, handlers.DeleteMovie)
+    movie := r.Group("/movie")
+    movie.POST("/", middleware.RequireAuth, middleware.IsAdmin, handlers.AddMovie)
+    movie.PUT("/:movie_id", middleware.RequireAuth, middleware.IsAdmin, handlers.UpdateMovie)
+    movie.DELETE("/:movie_id", middleware.RequireAuth, middleware.IsAdmin, handlers.DeleteMovie)
 
     SetupFilePath(r)
 }
