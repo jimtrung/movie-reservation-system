@@ -83,15 +83,9 @@ func IsAdmin(c *gin.Context) {
     }
 
     user, ok := userAny.(models.UserResponse)
-
-    if !ok {
+    if !ok || user.Role != models.Admin {
         c.AbortWithStatus(http.StatusUnauthorized)
         return
-    }
-    fmt.Println(user)
-
-    if user.Role != models.Admin {
-        c.AbortWithStatus(http.StatusUnauthorized)
     }
 
     c.Next()

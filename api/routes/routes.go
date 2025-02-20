@@ -18,24 +18,9 @@ func SetupRoutes(r *gin.Engine) {
     r.GET("/auth/:provider/callback", middleware.GetAuthCallBackFunction)
 
     // --> Movie <-- //
-    r.POST("/movie/add", middleware.IsAdmin, handlers.AddMovie)
-    r.PUT("/movie/update/:movie_id", middleware.IsAdmin, handlers.UpdateMovie)
-    r.DELETE("/movie/delete/:movie_id", middleware.IsAdmin, handlers.DeleteMovie)
+    r.POST("/movie/add", middleware.RequireAuth, middleware.IsAdmin, handlers.AddMovie)
+    r.PUT("/movie/update/:movie_id", middleware.RequireAuth, middleware.IsAdmin, handlers.UpdateMovie)
+    r.DELETE("/movie/delete/:movie_id", middleware.RequireAuth, middleware.IsAdmin, handlers.DeleteMovie)
 
-    // --> Static File <-- //
-    r.GET("/signup", func(ctx *gin.Context) {
-        ctx.File("./static/signup.html")
-    })
-
-    r.GET("/login", func(ctx *gin.Context) {
-        ctx.File("./static/login.html")
-    })
-
-    r.GET("/forgotpassword", func(ctx *gin.Context) {
-        ctx.File("./static/forgotpassword.html")
-    })
-
-    r.GET("/profile", func(ctx *gin.Context) {
-        ctx.File("./static/profile.html")
-    })
+    SetupFilePath(r)
 }

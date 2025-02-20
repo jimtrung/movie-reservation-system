@@ -1,3 +1,4 @@
+{{ block "login" . }}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,14 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <script src="https://unpkg.com/htmx.org@1.9.6"></script>
+    <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
 </head>
 <body>
 
     <div class="form-container">
         <h2>Login</h2>
         <form hx-post="/user/login"
-              hx-target="#response"
-              hx-swap="innerHTML"
+            hx-target="#response"
+            hx-swap="innerHTML"
+            hx-ext="json-enc">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" autocomplete="off" required>
@@ -37,6 +40,6 @@
 
         <div id="response"></div>
     </div>
-
 </body>
 </html>
+{{ end }}

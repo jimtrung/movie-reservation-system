@@ -1,3 +1,4 @@
 1. Check if middleware.IsAdmin is working correctly
  -> Check AddMovie, UpdateMovie, DeleteMovie
 
+2. Use HTMX so html pages work the right way
