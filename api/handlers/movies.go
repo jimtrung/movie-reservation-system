@@ -42,7 +42,7 @@ func UpdateMovie(c *gin.Context) {
         return
     }
 
-    var req models.UpdateRequest
+    var req models.UpdateMovieRequest
 
     if err := c.Bind(&req); err != nil {
         c.JSON(http.StatusBadRequest, gin.H{

@@ -19,7 +19,7 @@ func AddMovieToDatabase(movie models.AddMovieRequest) error {
     return err
 }
 
-func UpdateMovieField(movieID int, req models.UpdateRequest) error {
+func UpdateMovieField(movieID int, req models.UpdateMovieRequest) error {
     updateQuery := fmt.Sprintf(
         `UPDATE movies SET %s = $1 WHERE movie_id = $2`,
         req.Field,

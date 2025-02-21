@@ -25,5 +25,9 @@ func SetupRoutes(r *gin.Engine) {
     movie.PUT("/:movie_id", middleware.RequireAuth, middleware.IsAdmin, handlers.UpdateMovie)
     movie.DELETE("/:movie_id", middleware.RequireAuth, middleware.IsAdmin, handlers.DeleteMovie)
 
+    // --> Reservation <-- //
+    showtime := r.Group("/showtime")
+    showtime.GET("/:date", handlers.GetShowtimes)
+
     SetupFilePath(r)
 }

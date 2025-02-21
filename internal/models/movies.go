@@ -42,7 +42,7 @@ const (
     GenreField  = "genre"
 )
 
-type UpdateRequest struct {
+type UpdateMovieRequest struct {
     Field string `json:"field"`
     Value string `json:"value"`
 }
